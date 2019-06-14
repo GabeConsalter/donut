@@ -1,0 +1,27 @@
+{
+  "name": "donut",
+  "version": "1.0.0",
+  "description": "The sweet user interface to your react-native application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabeConsalter/donut.git"
+  },
+  "keywords": [
+    "ui",
+    "ux",
+    "react-native",
+    "components",
+    "lib",
+    "interface"
+  ],
+  "author": "GabeConsalter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabeConsalter/donut/issues"
+  },
+  "homepage": "https://github.com/GabeConsalter/donut#readme"
+}
