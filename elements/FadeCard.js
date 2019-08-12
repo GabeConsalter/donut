@@ -1,16 +1,33 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Animated, Easing, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Progress from './Progress';
 
+/**
+ * @class
+ * @classdesc Progress. Available props are:
+ * - {string} [accentColor] Accent color
+ * - {string} [actionIcon] Action icon name
+ * - {Component<JSX>} [children] Children component
+ * - {Number} [dieIn] Time to die in seconds
+ * - {Function} [onActionPress] Function called when action button is pressed
+ * - {string} [text] Text message
+ *
+ * @memberOf Element
+ * @extends {Component}
+ *
+ * @author gabriel.consalter
+ * @since 1.0.0
+ */
 export default class FadeCard extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			animBottom: new Animated.Value(-48)
-		}
-	};
+		};
+	}
 
 	componentDidMount() {
 		Animated.timing(
@@ -36,7 +53,7 @@ export default class FadeCard extends Component {
 
 	render() {
 		const { animBottom } = this.state,
-			{ text, accentColor, actionIcon, children, dieIn, onActionPress } = this.props;
+			{ accentColor, actionIcon, children, dieIn, onActionPress, text } = this.props;
 
 		return (
 			<Animated.View style={[styles.container, { bottom: animBottom }]}>
@@ -57,17 +74,37 @@ export default class FadeCard extends Component {
 	}
 }
 
+/**
+ * Type validation
+ */
+FadeCard.propTypes = {
+	accentColor: PropTypes.string.isRequired,
+	actionIcon: PropTypes.string.isRequired,
+	children: PropTypes.object,
+	dieIn: PropTypes.number.isRequired,
+	onActionPress: PropTypes.func.isRequired,
+	text: PropTypes.string.isRequired
+};
+
 const styles = StyleSheet.create({
-	container: {
-		position: 'absolute',
-		alignSelf: 'center',
-		height: 64,
-		width: '80%',
-		borderRadius: 7,
-		backgroundColor: '#FFF',
-		justifyContent: 'space-between',
+	button: {
 		alignItems: 'center',
+		borderBottomEndRadius: 7,
+		borderTopEndRadius: 7,
+		justifyContent: 'center',
+		width: 64
+	},
+
+	container: {
+		alignItems: 'center',
+		alignSelf: 'center',
+		backgroundColor: '#FFF',
+		borderRadius: 7,
+		elevation: 5,
 		flexDirection: 'row',
+		height: 64,
+		justifyContent: 'space-between',
+		position: 'absolute',
 		shadowColor: "#000",
 		shadowOffset: {
 			width: 0,
@@ -75,24 +112,14 @@ const styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
-
-		elevation: 5,
+		width: '80%'
 	},
 
 	innerContainer: {
-		flex: 1,
+		flex: 1
 	},
 
 	textContainer: {
 		padding: 16
-	},
-
-	button: {
-		width: 64,
-		height: '100%',
-		borderBottomEndRadius: 7,
-		borderTopEndRadius: 7,
-		alignItems: 'center',
-		justifyContent: 'center'
 	}
 });

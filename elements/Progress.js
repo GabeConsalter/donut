@@ -1,13 +1,26 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Animated, Easing, StyleSheet } from 'react-native';
 
+/**
+ * @class
+ * @classdesc Progress. Available props are:
+ * - {Number} [timing] Life time in seconds
+ * - {string} [color] Bar color
+ *
+ * @memberOf Element
+ * @extends {Component}
+ *
+ * @author gabriel.consalter
+ * @since 1.0.0
+ */
 export default class Progress extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			animWidth: new Animated.Value(100)
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -34,13 +47,21 @@ export default class Progress extends Component {
 	}
 }
 
+/**
+ * Type validation
+ */
+Progress.propTypes = {
+	color: PropTypes.string.isRequired,
+	timing: PropTypes.number.isRequired
+};
+
 const styles = StyleSheet.create({
 	container: {
+		borderTopStartRadius: 7,
 		height: 5,
-		position: 'absolute',
-		top: 1.5,
 		left: 0,
 		opacity: .5,
-		borderTopStartRadius: 7
+		position: 'absolute',
+		top: 1.5
 	}
 });
