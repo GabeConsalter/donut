@@ -41,6 +41,7 @@ Label.propTypes = {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
+		alignSelf: 'baseline',
 		borderRadius: 4,
 		justifyContent: 'center',
 		paddingHorizontal: 4,
