@@ -8,6 +8,7 @@ import { StyleSheet, Text, View } from 'react-native';
  * - {string} [color] Container color
  * - {Object} [style] Additional style
  * - {string} [text] Text to show
+ * - {string} [textColor] Color to apply in text
  *
  * @memberOf Element
  * @extends {Component}
@@ -17,13 +18,15 @@ import { StyleSheet, Text, View } from 'react-native';
  */
 export default class Label extends Component {
 	render() {
-		const { color, style, text } = this.props;
+		const { color, style, text, textColor } = this.props;
 
 		return (
 			<View style={[styles.container, style, {
 				backgroundColor: color
 			}]}>
-				<Text style={styles.text}>{text}</Text>
+				<Text style={[styles.text, {
+					color: textColor
+				}]}>{text}</Text>
 			</View>
 		);
 	}
@@ -35,7 +38,8 @@ export default class Label extends Component {
 Label.propTypes = {
 	color: PropTypes.string.isRequired,
 	style: PropTypes.object,
-	text: PropTypes.string.isRequired
+	text: PropTypes.string.isRequired,
+	textColor: PropTypes.string
 };
 
 const styles = StyleSheet.create({
@@ -46,12 +50,5 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		paddingHorizontal: 4,
 		paddingVertical: 1
-	},
-
-	text: {
-		color: '#FFF',
-		fontSize: 12,
-		textAlign: 'center',
-		textAlignVertical: 'center'
 	}
 });
